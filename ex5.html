@@ -1,0 +1,72 @@
+<!--Tp2 Exercice 5 Bader Samuel Plot Adrien-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercice 5</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        #inputtodo p {
+            border: gray solid 1px;
+            padding: 5px;
+            margin-bottom: 0;
+            width: 100%;
+        }
+
+        body {
+            margin: 5%
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="input-group mb-3" v-for="task in todolist">
+        <div class="input-group-prepend">
+            <div class="input-group-text">
+                <input v-if=!task.status v-model=task.status type="checkbox"
+                       aria-label="Checkbox for following text input">
+                <input v-else v-model=task.status type="checkbox" aria-label="chekbox pour le champs de saisie"
+                       disabled>
+            </div>
+        </div>
+        <div id="inputtodo">
+            <p>{{task.title}}</p>
+            <p>{{task.content}}</p>
+        </div>
+    </div>
+    <form>
+        <div class="form-group">
+            <label for="inputTitle">Titre</label>
+            <input v-model="title" type="text" class="form-control" id="inputTitle" placeholder="Entrez le Titre">
+        </div>
+        <div class="form-group">
+            <label for="inputArticle">Article</label>
+            <textarea v-model="content" class="form-control" id="inputArticle" rows="4"
+                      placeholder="Entrez l'article"></textarea>
+        </div>
+        <button type="button" class="btn btn-primary" v-on:click="addtask">Ajouter</button>
+    </form>
+</div>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            title: '',
+            content: '',
+            todolist: []
+        },
+        methods: {
+            addtask: function () {
+                if (this.title !== '' && this.content !== '')
+                    this.todolist.push({title: this.title, content: this.content, status: false})
+            }
+        }
+    })
+</script>
+</body>
+</html>

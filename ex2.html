@@ -1,0 +1,47 @@
+<!--Tp2 Exercice 2 Bader Samuel Plot Adrien-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercice 2</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        body{
+            /*Pour voir le changement de couleur du fond du texte*/
+            background-color: rgb(200,200,200);
+        }
+    </style>
+
+</head>
+<body>
+<div id="app">
+    <button v-on:click="inverser">Changer la couleur</button>
+    <a v-if="isWhite" v-bind:style="{color:'white', backgroundColor:'black'}">Blanc</a>
+    <a v-else v-bind:style="{color:'black', backgroundColor:'white'}">Noir</a>
+    <br>
+    <!--Propriété Calculée-->
+    <a>{{myText}}</a>
+</div>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            isWhite: false
+        },
+        methods: {
+            inverser() {
+                this.isWhite = !this.isWhite
+            }
+        },
+        computed: {
+            myText: function () {
+                return this.isWhite ? 'Blanc' : 'Noir'
+            }
+        }
+
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!--Tp2 Exercice 1 Bader Samuel Plot Adrien-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercice 1</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    Mon âge est {{ age }}
+</div>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            age: 20
+        }
+    })
+    function oneMore(){
+        vm.age++;
+    }
+    setInterval(() => {
+       oneMore();
+    }, 1000)
+</script>
+</body>
+</html>

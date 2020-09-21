@@ -1,0 +1,47 @@
+<!--Tp2 Exercice 3 Bader Samuel Plot Adrien-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercice 3</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        li {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <a>{{currentFruit}}</a>
+    <ul>
+        <li v-for="fruit in fruits">
+            <a v-on:click="deleteFruit(fruit)">❌</a>
+            <a v-on:click="changeCurrentFruit(fruit)" v-if="currentFruit!==fruit">{{fruit}}</a>
+            <a v-on:click="changeCurrentFruit(fruit)" v-else v-bind:style="{fontWeight:'bold'}">{{fruit}}</a>
+        </li>
+
+    </ul>
+</div>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            fruits: ['Pomme', 'Orange', 'Fraise', 'Melon', 'Cerise'],
+            currentFruit: 'Pomme'
+        },
+        methods: {
+            changeCurrentFruit: function (fruit) {
+                this.currentFruit = fruit;
+            },
+            deleteFruit: function (fruit) {
+                this.fruits.splice(this.fruits.indexOf(fruit), 1)
+                if (this.currentFruit === fruit)  // On change le currentFruit si on supprime celui actif
+                    this.currentFruit = this.fruits[0]
+            }
+        }
+    })
+</script>
+</body>
+</html>

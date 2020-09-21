@@ -1,0 +1,70 @@
+<!--Tp2 Exercice 4 Bader Samuel Plot Adrien-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercice 4</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        body{
+            margin:5%
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <article>
+        <p v-for="p in cours">{{p}}</p>
+    </article>
+    <div id="form">
+        <div class="form-group">
+            <label for="inputTitle">Titre</label>
+            <input v-model="article" type="text" class="form-control" id="inputTitle"
+                   placeholder="Entrez le nom du cours">
+        </div>
+        <button type="button" class="btn btn-primary" v-on:click="ajouter">Ajouter</button>
+    </div>
+    <div id="edit">
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">Example select</label>
+            <select class="form-control" id="exampleFormControlSelect1" v-model="selectArticle">
+                <option v-for="p in cours">{{p}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="inputName">Titre</label>
+            <input v-model="editArticle" type="text" class="form-control" id="inputName">
+        </div>
+        <button type="button" class="btn btn-primary" v-on:click="edit">Modifier</button>
+    </div>
+
+</div>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            editArticle: '',
+            selectArticle: '',
+            article: '',
+            cours: ['Algorithmique', 'Structures de données', 'Programmation Web', 'Web Avancé', 'Frond-end Web Development', 'Asynchronous Event-Driven Programming with Node.js']
+        },
+        methods: {
+            ajouter: function () {
+                this.cours.push(this.article);
+                this.article = '';
+            },
+            edit: function() {
+                this.cours[this.cours.indexOf(this.selectArticle)] = this.editArticle;
+                this.editArticle = '';
+            }
+        }
+    })
+</script>
+</body>
+</html>
